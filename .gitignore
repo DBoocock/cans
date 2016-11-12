@@ -1,0 +1,24 @@
+# Compiled python modules
+*.pyc
+
+# Temp files
+*~
+\#*#
+
+# plots
+*.pdf
+*.png
+
+# pyenv settings
+.python-version
+
+# Temporary scripts
+temp.py
+
+# Todo lists
+*.org
+
+# CANS directories
+# /bin
+/data
+/refactoring

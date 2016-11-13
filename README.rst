@@ -86,36 +86,52 @@ compartments.
 We may model nutrient fuelled cell division within a compartment by
 the reaction equation
 
-.. math::
-    C + N \rightarrow 2C,
+.. image:: https://cloud.githubusercontent.com/assets/14029228/20245183/d278a8d2-a993-11e6-9473-cab94455f9f7.jpg
+   :alt: Equation N + C goes to 2C
+
+..
+   .. math::
+       C + N \rightarrow 2C,
 
 where C is a cell and N is an amount of nutrients required for a
-division. Assuming
-`mass-action kinetics`_ and
-assuming that the number of cells is continuous, we model the cell
-dynamics as a simple first order reaction in a well-stirred vessel:
+division. Assuming `mass-action kinetics`_ and assuming that the
+number of cells is continuous, we model the cell dynamics as a simple
+first order reaction in a well-stirred vessel:
 
 .. _mass-action kinetics: https://en.wikipedia.org/wiki/Law_of_mass_action
 
-.. math::
-   \frac{dC}{dt} &= bNC,\ \ \ \ \ \ \ \ \ \ \frac{dN}{dt} &= -bNC,
+
+.. image:: https://cloud.githubusercontent.com/assets/14029228/20245228/c3ceb0c8-a994-11e6-9263-cd5b24f06bd3.jpg
+   :alt: Rate equations for C and N
+
+..
+   .. math::
+      \frac{dC}{dt} = bNC,\ \ \ \ \ \ \ \ \ \ \frac{dN}{dt} = -bNC,
+
 
 where N and C are concentrations and b is a rate constant for the
 reaction. We may model the diffusion of nutrients out of a culture
-:math:`i` by the reaction equation(s)
+i by the reaction equation(s)
 
-.. math::
+.. image:: https://cloud.githubusercontent.com/assets/14029228/20245243/0c2afb2e-a995-11e6-8e87-c6e4cfce3114.jpg
+   :alt: Equation for nutrient diffusion
 
-  N_{i} \rightarrow N_{j} \ \ \ \ \ \forall\ j \in \delta_{i},
+..
+   .. math::
+     N_{i} \rightarrow N_{j} \ \ \ \ \ \forall\ j \in \delta_{i},
 
-where :math:`\delta_{i}` are the nearest neighbours (dark blue
-spots). We can again assume mass action kinetics for these
-reactions. Considering the sum of diffusion reactions in both
-directions between :math:`i` and its nearest neighbours, we modify the
-rate equation for N to arrive at a model of competition:
+where delta_i are the nearest neighbours (dark blue spots). We can
+again assume mass action kinetics for these reactions. Considering the
+sum of diffusion reactions in both directions between i and its
+nearest neighbours, we modify the rate equation for N to arrive at a
+model of competition:
 
-.. math::
-   \frac{dC_{i}}{dt} = b_{i}N_{i}C_{i},\ \ \ \ \ \ \ \ \ \ \frac{dN_{i}}{dt} = - b_{i}N_{i}C_{i} - k\sum_{j \epsilon \delta_i}(N_{i} - N_{j}).
+.. image:: https://cloud.githubusercontent.com/assets/14029228/20245254/3ac81818-a995-11e6-8aa2-15feefca046d.jpg
+   :alt: Rate equations for competition model
+
+..
+   .. math::
+      \frac{dC_{i}}{dt} = b_{i}N_{i}C_{i},\ \ \ \ \ \ \ \ \ \ \frac{dN_{i}}{dt} = - b_{i}N_{i}C_{i} - k\sum_{j \epsilon \delta_i}(N_{i} - N_{j}).
 
 Here k is a nutrient diffusion constant which is the same for all
 diffusion reactions.
@@ -142,7 +158,7 @@ follows:
   sizes (defaults to unit volume). Currently, the four edges must be
   treated equally.
 - consts is a list of parameters that are constant for all
-  compartments in the array. For this model, this is :math:`k`, and
+  compartments in the array. For this model, this is k, and
   the initial amount of cells and nutrients. The notation X(0) is
   reserved to specify the initial amount of species X.
 - Notice that b is not contained is consts causing each compartment to

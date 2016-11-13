@@ -65,9 +65,12 @@ density timecourses are measured for as each spot grows. These are fit
 with a growth model and inferred parameters are used to quantify cell
 fitness.
 
-.. image:: http://farm6.staticflickr.com/5310/5658435523_c2e43729f1_b.jpg
+.. figure:: http://farm6.staticflickr.com/5310/5658435523_c2e43729f1_b.jpg
    :width: 600px
    :alt: Photograph of an array of cell cultures on a QFA agar
+
+   Figure 1: Photograph of 3x5 zone of a QFA agar showing growing cell
+   cultures
 
 To grow, cells consume nutrients which diffuse through the agar. The
 locations of cells are fixed; there is some outward growth, but
@@ -79,9 +82,11 @@ a schematic of the model: each culture and its surrounding area is
 given a compartment; arrows represent nutrient diffusion between
 compartments.
 
-.. image:: https://cloud.githubusercontent.com/assets/14029228/20231386/56343f2e-a859-11e6-9bdb-6eb92a36ba5d.png
+.. figure:: https://cloud.githubusercontent.com/assets/14029228/20231386/56343f2e-a859-11e6-9bdb-6eb92a36ba5d.png
    :width: 400px
    :alt: Schematic of a network growth-diffusion model for QFA
+
+   Figure 2: Schematic of a network growth-diffusion model for QFA
 
 We may model nutrient fuelled cell division within a compartment by
 the reaction equation
@@ -120,7 +125,7 @@ i by the reaction equation(s)
    .. math::
      N_{i} \rightarrow N_{j} \ \ \ \ \ \forall\ j \in \delta_{i},
 
-where delta_i are the nearest neighbours (dark blue spots). We can
+where \delta_i are the nearest neighbours (dark blue spots). We can
 again assume mass action kinetics for these reactions. Considering the
 sum of diffusion reactions in both directions between i and its
 nearest neighbours, we modify the rate equation for N to arrive at a
@@ -174,31 +179,29 @@ follows:
 Simulating and fitting
 ______________________
 
-
-Simulation from inferred parameters for a 12x20 zone of a QFA
-plate. Crosses are cell density observations, blue lines are inferred
-cells, yellow lines are inferred nutrients (unobserved).
-
-.. image:: https://cloud.githubusercontent.com/assets/14029228/20231510/58eacd04-a85a-11e6-92bf-487db9c04f91.png
+.. figure:: https://cloud.githubusercontent.com/assets/14029228/20231510/58eacd04-a85a-11e6-92bf-487db9c04f91.png
    :width: 800px
    :alt: 12x20 simulation of a fit to a QFA plate
 
-A larger plot of the boxed zone above, showing fits of two models: the
-competition model (solid yellow and blue) and the logistic model (solid
-red). The logistic model is equivalent to the competition model with
-k=0, i.e. with no diffusion.  Also plotted is a simulation of the
-competition model from initial parameters (dashed yellow and
-blue). Objective function values from least squares fits are displayed
-for both models.
+   Figure 3: Simulation from inferred parameters for a 12x20 zone of a QFA
+   plate. Crosses are cell density observations, blue lines are
+   inferred cells, yellow lines are inferred nutrients (unobserved).
 
 
-.. image:: https://cloud.githubusercontent.com/assets/14029228/20234291/04e28ae6-a871-11e6-8590-41a20f073626.png
+.. figure:: https://cloud.githubusercontent.com/assets/14029228/20234291/04e28ae6-a871-11e6-8590-41a20f073626.png
    :width: 600px
    :alt: 3x3 simulation of a fit to a QFA plate using two models
 
+   Figure 4: A larger plot of the boxed zone above, showing fits of
+   two models: the competition model (solid yellow and blue) and the
+   logistic model (solid red). The logistic model is equivalent to the
+   competition model with k=0, i.e. with no diffusion.  Also plotted
+   is a simulation of the competition model from initial parameters
+   (dashed yellow and blue). Objective function values from least
+   squares fits are displayed for both models.
 
-TODO
-----
+
+TODO ----
 
 1. [ ] Todo list
 2. [ ] Add examples to the README for how to create a Model, solve it,

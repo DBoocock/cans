@@ -4,16 +4,22 @@ cans
 Bulletin
 --------
 
+The code here is currently undergoing heavy reconstruction. In the
+meantime, I recomend you visit the `original project`_ for stable
+working code.
+
+.. _original project: https://github.com/lwlss/CANS
+
 11/11/16 - The code here was written for a masters project. I am
 currently in the process of refactoring and creating examples. The
-features of cans were intertwined with its original application\: to
+features of cans were intertlaced with its original application\: to
 infer parameters for a model describing cell growth in QFA
 experiments. I intend to create separate packages: one for
-constructing, simulating, and fitting models; the other for the
-specific application of fitting QFA data. The description below is
+constructing, simulating, and fitting network models; the other for
+the specific application of fitting QFA data. The description below is
 likely to change during this process as I add new features and
 capabilities.
-.. see the todo list
+
 
 Features
 --------
@@ -176,8 +182,13 @@ follows:
   than mass action kinetics.
 
 
-Simulating and fitting
-______________________
+Simulation and Parameter Inference
+__________________________________
+
+The below figures are examples of simulations of the QFA competition
+model (above) using inferred parameters. Each subplot in the array
+shows species timecourses for the respective compartment (culture) on
+a plate. Plots were produced using cans.
 
 .. figure:: https://cloud.githubusercontent.com/assets/14029228/20231510/58eacd04-a85a-11e6-92bf-487db9c04f91.png
    :width: 800px
@@ -192,18 +203,22 @@ ______________________
    :width: 600px
    :alt: 3x3 simulation of a fit to a QFA plate using two models
 
-   Figure 4: A larger plot of the boxed zone above, showing fits of
-   two models: the competition model (solid yellow and blue) and the
-   logistic model (solid red). The logistic model is equivalent to the
-   competition model with k=0, i.e. with no diffusion.  Also plotted
-   is a simulation of the competition model from initial parameters
-   (dashed yellow and blue). Objective function values from least
-   squares fits are displayed for both models.
+   Figure 4: A larger plot of the boxed zone in Figure 3, showing fits
+   of two models: the competition model (solid yellow and blue) and
+   the logistic model (solid red). The logistic model is equivalent to
+   the competition model with k=0, i.e. with no diffusion. Also
+   plotted is a simulation of the competition model from initial
+   parameters (dashed yellow and blue). Objective function values from
+   least squares fits are displayed for both models. Note that
+   logistic model parameters were inferred for individual cultures
+   using the `qfaR`_ package in order to use its heuristic checks.
+
+.. _qfaR: http://qfa.r-forge.r-project.org/
 
 
 TODO ----
 
-1. [ ] Todo list
-2. [ ] Add examples to the README for how to create a Model, solve it,
-   and plot the simulation.
-3. [ ] Other examples can go in a wiki or scripts
+* [ ] Add examples to the wiki showing how to create a model, solve
+   it, and plot the simulation. Perhaps with Jupyter notebook if
+   possible (compatible with libRoadRunner?).
+* [ ] Other examples, e.g. inference, can go in scripts

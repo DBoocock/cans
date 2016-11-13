@@ -1,3 +1,8 @@
+"""Generate and solve SBML models
+
+Generate from Array dimensions and parsed model files.
+
+"""
 import numpy as np
 import sys
 if sys.version_info[0] == 2:
@@ -7,28 +12,7 @@ if sys.version_info[0] == 2:
 from scipy.integrate import odeint
 
 
-from cans2.cans_funcs import gauss_list, get_mask
-
-
-# Need to generealize to allow power to be specified
-def power_model(params):
-    """Simplified model for (hopefully) guessing b params.
-
-    Constains a power series as an approximation of diffusion.
-    """
-    k1 = params[0]
-    k2 = params[1]
-    k3 = params[2]
-    k4 = params[3]
-    k5 = params[4]
-    b = params[5]
-    def growth(amounts, times):
-        np.maximum(0, amounts, out=amounts)
-        rates = [b*amounts[0]*amounts[1],
-                 -b*amounts[0]*amounts[1] + k1 + k2*times + k3*times*times
-                 + k3*times**4 + k4*times**5]
-        return rates
-    return growth
+from cans.cans_funcs import gauss_list, get_mask
 
 
 def neighbour_model(params, no_neighs=2):
@@ -318,7 +302,6 @@ class CompModelBC(Model):
                 "internals": False,
                 "edges": True,
             }
-
         ]
 
 
@@ -331,19 +314,6 @@ class IndeModel(Model):
         self.species = ['C', 'N']
         self.no_species = len(self.species)
         self.name = 'Independent Model'
-
-
-class PowerModel(Model):
-    def __init__(self):
-        """Only suitable for single cultures."""
-        self.model = power_model5
-        self.b_index = 7
-        self.param_index = 2
-        # Could actually fix C_0 and N_0 with init guess.
-        self.params = ['C_0', 'N_0', 'k1', 'k2', 'k3', 'k4', 'k5', 'b']
-        self.species = ['C', 'N']
-        self.no_species = len(self.species)
-        self.name = 'Power Model 5'
 
 
 class ImagNeighModel(Model):

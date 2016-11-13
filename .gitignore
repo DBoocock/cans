@@ -22,3 +22,7 @@ temp.py
 # /bin
 /data
 /refactoring
+/readme_images
+
+# Generated html
+README.html

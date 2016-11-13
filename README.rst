@@ -125,7 +125,7 @@ i by the reaction equation(s)
    .. math::
      N_{i} \rightarrow N_{j} \ \ \ \ \ \forall\ j \in \delta_{i},
 
-where $\delta_i$ are the nearest neighbours (dark blue spots). We can
+where delta_i are the nearest neighbours (dark blue spots). We can
 again assume mass action kinetics for these reactions. Considering the
 sum of diffusion reactions in both directions between i and its
 nearest neighbours, we modify the rate equation for N to arrive at a

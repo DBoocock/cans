@@ -21,9 +21,9 @@ def write_c_meas(plate, outfile=""):
 
 
 if __name__ == "__main__":
-    from cans2.plate import Plate
-    from cans2.model import CompModel
-    from cans2.plotter import Plotter
+    from cans.plate import Plate
+    from cans.model import CompModel
+    from cans.plotter import Plotter
 
     outdir = "sbml_models/sim_3x3/"
     c_meas_path = outdir + "c_meas.csv"

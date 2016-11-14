@@ -4,14 +4,14 @@ import random
 import inspyred
 
 
-import cans2.genetic_kwargs as kwargs
+import cans.genetic_kwargs as kwargs
 
 
-from cans2.plate import Plate
-from cans2.cans_funcs import frexp_10, pickleable
-from cans2.guesser import fit_imag_neigh
-from cans2.model import CompModel, CompModelBC
-from cans2.fitter import Fitter
+from cans.plate import Plate
+from cans.cans_funcs import frexp_10, pickleable
+from cans.guesser import fit_imag_neigh
+from cans.model import CompModel, CompModelBC
+from cans.fitter import Fitter
 
 
 # Generator functions for evolutionary strategy.

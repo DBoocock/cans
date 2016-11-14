@@ -8,8 +8,8 @@ import numpy as np
 from math import log10, floor
 
 
-from cans2.plate import Plate
-from cans2.cans_funcs import dict_to_numpy
+from cans.plate import Plate
+from cans.cans_funcs import dict_to_numpy
 
 
 def read_in_json(path):

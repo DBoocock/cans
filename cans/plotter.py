@@ -8,10 +8,10 @@ from mpl_toolkits.axes_grid1 import AxesGrid
 from matplotlib import rc
 
 
-from cans2.plate import Plate
-from cans2.zoning import get_plate_zone, sim_and_get_zone_amounts, get_zone_amounts, get_qfa_R_zone
-from cans2.process import spearmans_rho, calc_b, calc_N_0, least_sq
-from cans2.model import IndeModel
+from cans.plate import Plate
+from cans.zoning import get_plate_zone, sim_and_get_zone_amounts, get_zone_amounts, get_qfa_R_zone
+from cans.process import spearmans_rho, calc_b, calc_N_0, least_sq
+from cans.model import IndeModel
 
 
 
@@ -692,8 +692,8 @@ class Plotter(object):
 
 
 if __name__ == "__main__":
-    from cans2.plate import Plate
-    from cans2.model import CompModel
+    from cans.plate import Plate
+    from cans.model import CompModel
 
     rows = 2
     cols = 2

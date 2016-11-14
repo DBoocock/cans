@@ -10,8 +10,8 @@ imaginary neighbour model instead.
 import numpy as np
 
 
-from cans2.model import IndeModel, ImagNeighModel
-from cans2.plate import Plate
+from cans.model import IndeModel, ImagNeighModel
+from cans.plate import Plate
 
 
 def fit_log_eq(plate, plate_model, b_guess,

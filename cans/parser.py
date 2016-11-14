@@ -143,7 +143,7 @@ def get_plate_data2(path, barcode=None, ignore_empty=False):
 
 
 if __name__ == "__main__":
-    from cans2.plate import Plate
+    from cans.plate import Plate
 
 
     stripes_path = "../../data/stripes/Stripes.txt"

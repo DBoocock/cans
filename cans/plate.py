@@ -12,10 +12,10 @@ if sys.version_info[0] == 2:
 from scipy import interpolate
 
 
-from cans2.model import IndeModel
-from cans2.fitter import Fitter
-from cans2.cans_funcs import get_mask
-from cans2.make_sbml import create_sbml
+from cans.model import IndeModel
+from cans.fitter import Fitter
+from cans.cans_funcs import get_mask
+from cans.make_sbml import create_sbml
 
 
 def sim_a_plate(rows, cols, times, model, params, noise=False):
@@ -383,9 +383,9 @@ class Culture(BasePlate):
 if __name__ == '__main__':
     import roadrunner
 
-    from cans2.cans_funcs import get_mask
-    from cans2.model import CompModel
-    from cans2.plotter import Plotter
+    from cans.cans_funcs import get_mask
+    from cans.model import CompModel
+    from cans.plotter import Plotter
 
     comp_model = CompModel()
     comp_plotter = Plotter(comp_model)

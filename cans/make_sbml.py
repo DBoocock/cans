@@ -386,9 +386,9 @@ if __name__ == "__main__":
     import numpy as np
 
 
-    from cans2.plate import Plate
-    from cans2.model import CompModelBC, CompModel
-    from cans2.plotter import Plotter
+    from cans.plate import Plate
+    from cans.model import CompModelBC, CompModel
+    from cans.plotter import Plotter
 
 
     # Simulate a plate with data and parameters.

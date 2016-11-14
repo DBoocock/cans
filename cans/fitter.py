@@ -6,7 +6,7 @@ from functools import partial
 from scipy.optimize import minimize
 
 
-from cans2.cans_funcs import dict_to_json
+from cans.cans_funcs import dict_to_json
 
 
 class Fitter(object):

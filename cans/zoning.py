@@ -2,10 +2,10 @@ import numpy as np
 import json
 
 
-from cans2.plate import Plate
-from cans2.cans_funcs import dict_to_json
-from cans2.process import calc_b, calc_N_0, least_sq
-from cans2.model import IndeModel
+from cans.plate import Plate
+from cans.cans_funcs import dict_to_json
+from cans.process import calc_b, calc_N_0, least_sq
+from cans.model import IndeModel
 
 
 def _get_zone(array, coords, rows, cols):

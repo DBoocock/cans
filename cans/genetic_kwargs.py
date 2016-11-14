@@ -8,11 +8,11 @@ import numpy as np
 import roadrunner
 
 
-from cans2.model import CompModel, CompModelBC
-from cans2.plate import Plate
-from cans2.fitter import Fitter
-from cans2.make_sbml import create_sbml
-from cans2.cans_funcs import pickleable
+from cans.model import CompModel, CompModelBC
+from cans.plate import Plate
+from cans.fitter import Fitter
+from cans.make_sbml import create_sbml
+from cans.cans_funcs import pickleable
 
 
 class PickleableSWIG(object):

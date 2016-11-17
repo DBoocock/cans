@@ -4,22 +4,15 @@ cans
 Bulletin
 --------
 
-The code here is currently undergoing heavy reconstruction. In the
-meantime, I recomend you visit the `original project`_ for stable
-working code.
+17/11/16 - This package was created during a masters project and is
+currently being refactored. Originally, cans was interlaced with code
+for its intended application\: to infer parameters for a model
+describing cell growth in QFA experiments. I intend to create separate
+packages: one for constructing, simulating, and fitting network
+models; the other using cans for the specific application of fitting
+QFA data. Stable code can be found at the `original project`_ repo.
 
 .. _original project: https://github.com/lwlss/CANS
-
-11/11/16 - The code here was written for a masters project. I am
-currently in the process of refactoring and creating examples. The
-features of cans were intertlaced with its original application\: to
-infer parameters for a model describing cell growth in QFA
-experiments. I intend to create separate packages: one for
-constructing, simulating, and fitting network models; the other for
-the specific application of fitting QFA data. The description below is
-likely to change during this process as I add new features and
-capabilities.
-
 
 Features
 --------
@@ -27,8 +20,7 @@ Features
 - Construct reaction-diffusion models using a 2D rectangular array
   of compartments
 - Define reactions within compartments
-- Define diffusion reactions between nearest neighbouring
-  compartments
+- Define diffusion reactions between neighbouring compartments
 - Generate SBML models for an arbitrary sized array
 - Simulate models using libRoadRunner
 - Fit models to species timecourse observations using a gradient
@@ -53,30 +45,30 @@ for interactions between neighbouring cultures. cans is an acronym for
 Cells, Arrest, Nutrients, and Signalling - species and processes
 considered in the original model.
 
-It is possible to model other systems by defining new reactions and
-species. cans will generate SBML models for an arbitrary array size
+It is possible to defining new reactions and species to model other
+systems. cans will generate SBML models for an arbitrary array size
 from a set of reactions common to each compartment. Models can be
-simulated, and results can be plotted. Given a set of initial
+simulated and results can be plotted. Given a set of initial
 parameters, cans will also fit models to species timecourses. The
 original application of cans, to model microbial growth in
-Quantitative Fitness Analysis (QFA) experiments, provides an
-illustrative example of the intended use and capabilities.
+Quantitative Fitness Analysis (QFA) experiments, illustrates the
+intended use and capabilities.
 
 An Example: Modelling QFA and fitting data
 ------------------------------------------
 
-The image below is from a typical QFA experiment showing a rectangular
+The image below, from a typical QFA experiment, shows a rectangular
 array of cell cultures growing on the surface of a solid agar. Cell
-density timecourses are measured for as each spot grows. These are fit
-with a growth model and inferred parameters are used to quantify cell
+density timecourses are measured for each spot. These are fit with a
+growth model and inferred parameters are used to quantify cell
 fitness.
 
 .. figure:: http://farm6.staticflickr.com/5310/5658435523_c2e43729f1_b.jpg
    :width: 600px
    :alt: Photograph of an array of cell cultures on a QFA agar
 
-   Figure 1: Photograph of 3x5 zone of a QFA agar showing growing cell
-   cultures
+   Figure 1: Photograph of cell cultures growing in a 3x5 zone on a
+   QFA agar
 
 To grow, cells consume nutrients which diffuse through the agar. The
 locations of cells are fixed; there is some outward growth, but
@@ -94,8 +86,8 @@ compartments.
 
    Figure 2: Schematic of a network growth-diffusion model for QFA
 
-We may model nutrient fuelled cell division within a compartment by
-the reaction equation
+We model nutrient fuelled cell division within a compartment by the
+reaction equation
 
 .. image:: https://cloud.githubusercontent.com/assets/14029228/20245183/d278a8d2-a993-11e6-9473-cab94455f9f7.jpg
    :alt: Equation N + C goes to 2C
@@ -121,8 +113,8 @@ first order reaction in a well-stirred vessel:
 
 
 where N and C are concentrations and b is a rate constant for the
-reaction. We may model the diffusion of nutrients out of a culture
-i by the reaction equation(s)
+reaction. We may model the diffusion of nutrients out of a culture i
+by the reaction equation(s)
 
 .. image:: https://cloud.githubusercontent.com/assets/14029228/20245243/0c2afb2e-a995-11e6-8e87-c6e4cfce3114.jpg
    :alt: Equation for nutrient diffusion
@@ -131,11 +123,10 @@ i by the reaction equation(s)
    .. math::
      N_{i} \rightarrow N_{j} \ \ \ \ \ \forall\ j \in \delta_{i},
 
-where delta_i are the nearest neighbours (dark blue spots). We can
-again assume mass action kinetics for these reactions. Considering the
-sum of diffusion reactions in both directions between i and its
-nearest neighbours, we modify the rate equation for N to arrive at a
-model of competition:
+where delta_i are the nearest neighbours (dark blue spots). We again
+assume mass action kinetics for these reactions. Considering the sum
+of diffusion reactions in and out of a culture, we modify the rate
+equation for N to arrive at a model of competition:
 
 .. image:: https://cloud.githubusercontent.com/assets/14029228/20245254/3ac81818-a995-11e6-8aa2-15feefca046d.jpg
    :alt: Rate equations for competition model
@@ -144,8 +135,8 @@ model of competition:
    .. math::
       \frac{dC_{i}}{dt} = b_{i}N_{i}C_{i},\ \ \ \ \ \ \ \ \ \ \frac{dN_{i}}{dt} = - b_{i}N_{i}C_{i} - k\sum_{j \epsilon \delta_i}(N_{i} - N_{j}).
 
-Here k is a nutrient diffusion constant which is the same for all
-diffusion reactions.
+Here k is a nutrient diffusion constant which is constant over the
+plate.
 
 Defining a Model
 ________________
@@ -154,41 +145,35 @@ The QFA model can be defined using the following syntax:
 
 ::
 
-   height = 1
-   width = 1
-   edge_width = 1
-   consts = k, C(0), N(0)
-   C + N -> 2C; b*C*N
-   N -> _N; k*N
+   globals = k, C(0), N(0)
+   C + N -> 2C; b*[C]*[N]
+   N -> _N; k*[N]
 
 The two reactions can be repeated for each compartment in an array to
 model networks of arbitrary size. The definition is explained as
 follows:
 
-- The first three lines define internal, edge, and corner compartment
-  sizes (defaults to unit volume). Currently, the four edges must be
-  treated equally.
-- consts is a list of parameters that are constant for all
-  compartments in the array. For this model, this is k, and
-  the initial amount of cells and nutrients. The notation X(0) is
-  reserved to specify the initial amount of species X.
-- Notice that b is not contained is consts causing each compartment to
-  be given a separate parameter.
+- globals is a list of parameters that are the same for all
+  compartments in the array. For this model, this is k, and the
+  initial amount of cells and nutrients. The notation X(0) is reserved
+  to specify the initial amount of species X.
+- Notice that b is not contained is globals so each compartment is
+  given a separate parameter.
 - The underscore in the second reaction "_N" signifies that the
   species has left the original reaction volume.
 - The rate of each reaction is given by an expression after the
-  semicolon where species from the left hand side now represent
-  concentrations. These can be changed to represent dynamics other
-  than mass action kinetics.
+  semicolon where square brackets represent concentration. Rate
+  eqautions can be changed to model different dynamics (e.g. Monod,
+  Michaelis-Menten).
 
 
 Simulation and Parameter Inference
 __________________________________
 
-The below figures are examples of simulations of the QFA competition
-model (above) using inferred parameters. Each subplot in the array
-shows species timecourses for the respective compartment (culture) on
-a plate. Plots were produced using cans.
+Below are example simulations of the QFA competition model (above)
+using inferred parameters. Each subplot in the array shows species
+timecourses for the respective compartment on a plate. Plots were
+produced using cans.
 
 .. figure:: https://cloud.githubusercontent.com/assets/14029228/20231510/58eacd04-a85a-11e6-92bf-487db9c04f91.png
    :width: 800px
@@ -216,9 +201,12 @@ a plate. Plots were produced using cans.
 .. _qfaR: http://qfa.r-forge.r-project.org/
 
 
-TODO ----
+..
+   TODO ----
+   _________
 
-* [ ] Add examples to the wiki showing how to create a model, solve
-   it, and plot the simulation. Perhaps with Jupyter notebook if
-   possible (compatible with libRoadRunner?).
-* [ ] Other examples, e.g. inference, can go in scripts
+   * [ ] Refactor and remove redundancies
+   * [ ] Create parser
+   * [ ] Add examples to the wiki showing how to create a model, solve
+      it, and plot the simulation.
+   * [ ] Other examples, e.g. inference, can go in scripts

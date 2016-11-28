@@ -5,7 +5,7 @@ Bulletin
 --------
 
 17/11/16 - This package was created during a masters project and is
-currently being refactored. Originally, cans was interlaced with code
+currently being refactored. Originally, cans was combined with code
 for its intended application\: to infer parameters for a model
 describing cell growth in QFA experiments. I intend to create separate
 packages: one for constructing, simulating, and fitting network

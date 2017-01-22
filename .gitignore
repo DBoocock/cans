@@ -1,5 +1,8 @@
 # Compiled python modules
 *.pyc
+/.cache
+/cans.egg-info
+/.eggs
 
 # Temp files
 *~
@@ -23,6 +26,8 @@ temp.py
 /data
 /refactoring
 /readme_images
+/old_modules
+extension_ideas.org
 
 # Generated html
 README.html

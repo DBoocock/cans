@@ -1,0 +1,38 @@
+# PARSING NOT YET IMPLEMENTED. Express as irreversible or define
+#
+# Reaction equation representation of the qfa competition model using
+# reversible diffusion
+#
+#
+# The # character is reserved for comments (Python style).
+# Species names may contain alpha-numeric and underscore characters only.
+#
+# If specified here (i.e. given numberic values rather than None),
+# initial amounts and global parameters cannot be changed in the resulting
+# roadrunner object. If these are parameters to be inferred then leave the
+# values as None. Specifying values for local parameters (e.g. b below) here
+# would fix the array size and is not currently supported.
+#
+
+@init_amounts
+N: None    # Leave as None to create a global paramter.
+C: None
+
+@globals
+k: None    # Setting a value, rather than leaving as None
+	   # would fix the parameter. This is not desired if
+	   # wanting to simulate the model with different
+	   # parameter values (e.g. when inferring parameters).
+
+@locals
+b: None    # Leave as None to create local parameters
+
+@reaction: Growth
+# Use SBML Level 3 compatible math (e.g. ^ not **)
+C + N -> 2C; b*C*N
+
+# Diffusion from a compartment to a nearest neighbour
+# Species in a neighbouring compartment have a perceding underscore after a
+# possible stoichiometry (e.g. _N or 2_H20).
+@reaction: Diffusion
+N <-> _N; k*N - k*_N    # <-> indicates reversibility

@@ -1,0 +1,42 @@
+# Reaction equation representation of the qfa competition model
+
+# The "#" character is reserved for comments (Python style).
+# Species names may contain alpha-numeric and underscore characters only.
+
+# If specified here (i.e. given numberic values rather than None),
+# initial amounts and array-level parameters cannot be changed in the
+# resulting roadrunner object. If these are to be inferred then leave
+# the values as None.
+
+# All species must by specified an initial numeric value or None. Using
+# None creates a global parameter for which it is later possible to
+# change the value.
+@init_amounts
+N: None
+C: None
+
+@array_lvl_params
+k: None
+
+# The order of listing of compartment level parameters will dictate the
+# order in which they appear in the global parameter list of the SBML model.
+# No values can be set for these parameters.
+@compartment_lvl_params
+b
+
+@reaction
+name: Growth
+# Does the reaction apply to internal and/or edge cultures
+internal: True
+edge: True
+# Use SBML Level 3 compatible math in rete (e.g. ^ not **)
+C + N -> 2C: b*C*N    # Rate equation follows a colon
+
+# Diffusion from a compartment to a nearest neighbour
+@reaction
+name: Diffusion
+internal: True
+edge: True
+# Species in a neighbouring compartment have a perceding underscore after a
+# possible stoichiometry (e.g. _N or 2_H20).
+N -> _N: k*N    # -> indicates irreversibility

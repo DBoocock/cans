@@ -3,6 +3,48 @@
 import re
 import copy
 
+
+class Line(object):
+    def __init__(self, raw, num):
+        self.raw = raw
+        self.num = num
+        self.clean = self.clean_line(self.raw)
+
+    def clean_line(self, raw):
+        """Remove comments and whitespace"""
+        return None
+
+class Section(object):
+    """A section of the file e.g. the specifier @reaction and its content"""
+    def __init__(self, lines):
+        self.head = lines[0]
+        self.body = lines[1:]    # No need to worry about index error
+                                 # as empty list is returned rather
+                                 # than an error if length < 1.
+        # The following are just for reaction type sections and should
+        # perhaps go somewhere else
+        self.name = self.get_name(self.body)
+        self.internal = None
+        self.edge = None
+
+    def get_name(self, body):
+        pattern = re.compile(r'name:(\w)+')
+        matches = [re.match(pattern, line.clean) for line in body]
+        matches = [(i, m) for i, m in enumerate(matches) if m is not None]
+        if not matches:
+            return None
+        elif len(matches) == 1:
+            return matches[0][-1].group(1)
+        else:
+            conflicting_lines = [self.body[i] for i, m in matches]
+            self.handle_multi_def_error(conflicting_lines)
+
+    def handle_multi_def_error(self, lines):
+        """Handle the error of repeated fields in a section"""
+        msg = "Some message".format()
+        raise ParserError(msg)    # Could subclass an error to get ParserError
+
+
 class Parser(object):
 
     def __init__(self, path=""):
@@ -11,7 +53,7 @@ class Parser(object):
             self.parse(path)
 
     def _clean_lines(self, lines):
-        """Remove comments and whitespace"""
+    """Remove comments and whitespace"""
         lines = [line.split("#")[0] for line in lines]
         lines = ["".join(line.split()) for line in lines if line]
         return lines

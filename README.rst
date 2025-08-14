@@ -1,18 +1,38 @@
 cans
 ====
+Mechanistic modelling and parameter estimation in microbial growth
+assays
 
-Bulletin
---------
+Quantitative fitness analysis creates different mutant and double
+mutant microbial strains and aims to compare growth rates (a proxy for
+fitness) in order to detect pairwise genetic interactions. To increase
+experimental throughput many colonies are seeded and grown on the same
+agar plate, potentially causing a competition effect as nutrients
+diffuse through the gel.
 
-17/11/16 - This package was created during a masters project and is
-currently being refactored. Originally, cans was combined with code
-for its intended application\: to infer parameters for a model
-describing cell growth in QFA experiments. I intend to create separate
-packages: one for constructing, simulating, and fitting network
-models; the other using cans for the specific application of fitting
-QFA data. Stable code can be found at the `original project`_ repo.
+Statistical methods of dealing with this effect include randomised
+experimental design and joint estimation of growth rates, e.g. using a
+hierarchical Bayesian model.
 
-.. _original project: https://github.com/lwlss/CANS
+We took a different approach and formulated a *mechanistic model* of
+nutrient diffusion and microbial growth.
+
+The previous standard was to fit a logistic growth curve with two
+parameters - a growth rate and carrying capacity - to each colony; we
+found more consistent growth estimates - indicated by lower
+coefficient of variation for each strain - using roughly half the
+parameters - a growth rate for each colony, a nutrient density and a
+diffusion rate.
+
+The mechanistic model could easily be extended to jointly estimate the
+growth rates of replicates - reducing the number of parameters further
+- or potentially be combined with statistical approaches to joint
+estimation.
+
+Research related to the project is documented in the following paper:
+Boocock D and Lawless C (2017)
+Modelling Competition for Nutrients between Microbial Populations Growing on a Solid Agar Surface
+doi: https://doi.org/10.1101/086835
 
 Features
 --------

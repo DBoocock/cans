@@ -1,38 +1,45 @@
-cans
-====
-Mechanistic modelling and parameter estimation in microbial growth
-assays
+cans - mechanistic modelling and parameter estimation in microbial growth assays
+================================================================================
 
-Quantitative fitness analysis creates different mutant and double
+Description
+-----------
+
+`Quantitative fitness analysis`_ creates different mutant and double
 mutant microbial strains and aims to compare growth rates (a proxy for
 fitness) in order to detect pairwise genetic interactions. To increase
 experimental throughput many colonies are seeded and grown on the same
 agar plate, potentially causing a competition effect as nutrients
 diffuse through the gel.
 
+.. _Quantitative fitness analysis: https://dx.doi.org/10.3791/4018
+
 Statistical methods of dealing with this effect include randomised
 experimental design and joint estimation of growth rates, e.g. using a
-hierarchical Bayesian model.
+`hierarchical Bayesian model`_.
 
-We took a different approach and formulated a *mechanistic model* of
+.. _`hierarchical Bayesian model`: https://arxiv.org/abs/1405.7091
+
+
+We took a different approach and formulated a **mechanistic model** of
 nutrient diffusion and microbial growth.
 
-The previous standard was to fit a logistic growth curve with two
+The `previous standard`_ was to fit a logistic growth curve with two
 parameters - a growth rate and carrying capacity - to each colony; we
 found more consistent growth estimates - indicated by lower
 coefficient of variation for each strain - using roughly half the
 parameters - a growth rate for each colony, a nutrient density and a
 diffusion rate.
 
+.. _`previous standard`: https://qfa.r-forge.r-project.org/docs/qfa.pdf
+
 The mechanistic model could easily be extended to jointly estimate the
 growth rates of replicates - reducing the number of parameters further
 - or potentially be combined with statistical approaches to joint
 estimation.
 
-Research related to the project is documented in the following paper:
-Boocock D and Lawless C (2017)
-Modelling Competition for Nutrients between Microbial Populations Growing on a Solid Agar Surface
-doi: https://doi.org/10.1101/086835
+| Research related to this project is documented in the following paper:
+| *Modelling Competition for Nutrients between Microbial Populations Growing on a Solid Agar Surface* - Boocock D and Lawless C (2017)
+| doi: https://doi.org/10.1101/086835
 
 Features
 --------
@@ -48,16 +55,6 @@ Features
 - Plot observed, simulated, and estimated timecourses
 - So far, I have only used the package to simulate deterministic ODE
   models
-
-Related Packages
-----------------
-
-- The (to be) separate qfa package uses cans for fitting a predefined
-  model (described below) to QFA data. It can make quick initial
-  parameter guesses for this specific model.
-
-Description
------------
 
 cans was originally developed to model the growth of an array of cell
 cultures on the surface of a solid agar, and in particular, to account
@@ -219,14 +216,3 @@ produced using cans.
    using the `qfaR`_ package in order to use its heuristic checks.
 
 .. _qfaR: http://qfa.r-forge.r-project.org/
-
-
-..
-   TODO ----
-   _________
-
-   * [ ] Refactor and remove redundancies
-   * [ ] Create parser
-   * [ ] Add examples to the wiki showing how to create a model, solve
-      it, and plot the simulation.
-   * [ ] Other examples, e.g. inference, can go in scripts

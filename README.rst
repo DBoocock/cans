@@ -38,7 +38,7 @@ growth rates of replicates - reducing the number of parameters further
 estimation.
 
 | Research related to this project is documented in the following paper:
-| *Modelling Competition for Nutrients between Microbial Populations Growing on a Solid Agar Surface* - Boocock D and Lawless C (2017)
+| *Modelling Competition for Nutrients between Microbial Populations Growing on a Solid Agar Surface* - Daniel Boocock and Conor Lawless (2017)
 | doi: https://doi.org/10.1101/086835
 
 Features
